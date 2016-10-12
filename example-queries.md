@@ -30,14 +30,17 @@
 27. Provide a query that shows the most purchased Media Type.
 
 ##Queries
-1. ```
+1.
+```
 SELECT FirstName || " " || LastName AS "Name", CustomerId, Country FROM Customer
 Where Country != "USA"
 ```
-2. ```
+2.
+```
 SELECT FirstName || " " || LastName AS "Name" FROM Customer
 Where Country = "Brazil"
 ```
-3. ```
+3.
+```
 
 ```
