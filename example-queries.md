@@ -48,59 +48,84 @@ Where Country = "Brazil"
 ```
 4.
 ```
-
+SELECT FirstName || " " || LastName AS "Name" FROM Employee
+WHERE Title LIKE "sales %"
 ```
 5.
 ```
-
+SELECT BillingCountry FROM Invoice
+GROUP BY BillingCountry
 ```
 6.
 ```
-
+SELECT * FROM Invoice
+WHERE BillingCountry = "Brazil"
 ```
 7.
 ```
-
+SELECT Employee.FirstName || " " || Employee.LastName AS "Agent Name", Invoice.* FROM Invoice
+JOIN Customer on Invoice.CustomerId = Customer.CustomerId
+JOIN Employee on Customer.SupportRepId = Employee.EmployeeId
 ```
 8.
 ```
-
+SELECT Employee.FirstName || " " || Employee.LastName AS "Agent Name", Customer.FirstName || " " || Customer.LastName AS "Customer Name", Invoice.BillingCountry, Invoice.Total FROM Invoice
+JOIN Customer on Invoice.CustomerId = Customer.CustomerId
+JOIN Employee on Customer.SupportRepId = Employee.EmployeeId
 ```
 9.
 ```
+SELECT COUNT(Total) AS "2009 # of Sales", SUM(Total) AS "2009 Total Sales" FROM Invoice
+WHERE InvoiceDate LIKE "2009%";
 
+SELECT COUNT(Total) AS "2011 # of Sales", SUM(Total) AS "2011 Total Sales" FROM Invoice
+WHERE InvoiceDate LIKE "2011%";
 ```
 10.
 ```
-
+SELECT COUNT(InvoiceId) AS "Total items on Invoice 37" FROM InvoiceLine
+WHERE InvoiceId = 37
 ```
 11.
 ```
-
+SELECT InvoiceId, COUNT(InvoiceId) AS "Items on invoice" FROM InvoiceLine
+GROUP BY InvoiceId
 ```
 12.
 ```
-
+SELECT Track.Name AS "Track Name", InvoiceLine.InvoiceLineId, InvoiceLine.InvoiceId AS "Invoice #" FROM InvoiceLine
+JOIN Track ON InvoiceLine.TrackId = Track.TrackId
 ```
 13.
 ```
-
+SELECT Track.Name AS "Track Name", Artist.Name AS "Artist Name", InvoiceLine.InvoiceLineId, InvoiceLine.InvoiceId AS "Invoice #" FROM InvoiceLine
+JOIN Track ON InvoiceLine.TrackId = Track.TrackId
+JOIN Album ON Track.AlbumId = Album.AlbumId
+JOIN Artist ON Album.ArtistId = Artist.ArtistId
 ```
 14.
 ```
-
+SELECT BillingCountry AS "Country", COUNT(BillingCountry) AS "# of Invoices" FROM Invoice
+GROUP BY BillingCountry
 ```
 15.
 ```
-
+SELECT Playlist.Name, COUNT(PlaylistTrack.PlaylistId) AS "# of tracks" FROM Playlist
+JOIN PlaylistTrack ON Playlist.PlaylistId = PlaylistTrack.PlaylistId
+GROUP BY PlaylistTrack.PlaylistId
 ```
 16.
 ```
-
+SELECT Track.Name AS "Track", Album.Title AS "Album", MediaType.Name AS "Media Type", Genre.Name AS "Genre" FROM Track
+JOIN Album ON Track.AlbumId = Album.AlbumId
+JOIN MediaType ON Track.MediaTypeId = MediaType.MediaTypeId
+JOIN Genre ON Track.GenreId = Genre.GenreId
 ```
 17.
 ```
-
+SELECT Invoice.*, COUNT(InvoiceLine.InvoiceId) AS "# of items" FROM Invoice
+JOIN InvoiceLine ON InvoiceLine.InvoiceId = Invoice.InvoiceId
+GROUP BY InvoiceLine.InvoiceId
 ```
 18.
 ```
