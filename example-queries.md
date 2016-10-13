@@ -76,10 +76,10 @@ JOIN Employee on Customer.SupportRepId = Employee.EmployeeId
 9.
 ```
 SELECT COUNT(Total) AS "2009 # of Sales", SUM(Total) AS "2009 Total Sales" FROM Invoice
-WHERE InvoiceDate LIKE "2009%";
+WHERE strftime('%Y', Invoice.InvoiceDate ) == '2009'
 
 SELECT COUNT(Total) AS "2011 # of Sales", SUM(Total) AS "2011 Total Sales" FROM Invoice
-WHERE InvoiceDate LIKE "2011%";
+WHERE strftime('%Y', Invoice.InvoiceDate ) == '2011'
 ```
 10.
 ```
@@ -139,7 +139,7 @@ GROUP BY Customer.SupportRepId
 SELECT Employee.FirstName || " " || Employee.LastName AS "Agent Name", SUM(Invoice.Total) AS "Total value of all sales" FROM Employee
 JOIN Customer ON Employee.EmployeeId = Customer.SupportRepId
 JOIN Invoice on Invoice.CustomerId = Customer.CustomerId
-WHERE Invoice.InvoiceDate LIKE "2009%"
+WHERE strftime('%Y', Invoice.InvoiceDate ) == '2009'
 GROUP BY Customer.SupportRepId
 ```
 20.
@@ -147,7 +147,7 @@ GROUP BY Customer.SupportRepId
 SELECT Employee.FirstName || " " || Employee.LastName AS "Agent Name", SUM(Invoice.Total) AS "Total value of all sales" FROM Employee
 JOIN Customer ON Employee.EmployeeId = Customer.SupportRepId
 JOIN Invoice on Invoice.CustomerId = Customer.CustomerId
-WHERE Invoice.InvoiceDate LIKE "2010%"
+WHERE strftime('%Y', Invoice.InvoiceDate ) == '2010'
 GROUP BY Customer.SupportRepId
 ```
 21.
@@ -174,7 +174,7 @@ ORDER BY Total DESC
 SELECT Track.Name , COUNT(InvoiceLine.TrackId) AS CountSold FROM InvoiceLine
 JOIN Invoice ON InvoiceLine.InvoiceId = Invoice.InvoiceId
 JOIN Track ON InvoiceLine.TrackId = Track.TrackId
-WHERE Invoice.InvoiceDate LIKE "2013%"
+WHERE strftime('%Y', Invoice.InvoiceDate ) == '2013'
 GROUP BY InvoiceLine.TrackId
 ORDER BY CountSold DESC
 LIMIT 1
