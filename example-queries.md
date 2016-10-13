@@ -129,27 +129,45 @@ GROUP BY InvoiceLine.InvoiceId
 ```
 18.
 ```
-
+SELECT Employee.FirstName || " " || Employee.LastName AS "Agent Name", SUM(Invoice.Total) AS "Total value of all sales" FROM Employee
+JOIN Customer ON Employee.EmployeeId = Customer.SupportRepId
+JOIN Invoice on Invoice.CustomerId = Customer.CustomerId
+GROUP BY Customer.SupportRepId
 ```
 19.
 ```
-
+SELECT Employee.FirstName || " " || Employee.LastName AS "Agent Name", SUM(Invoice.Total) AS "Total value of all sales" FROM Employee
+JOIN Customer ON Employee.EmployeeId = Customer.SupportRepId
+JOIN Invoice on Invoice.CustomerId = Customer.CustomerId
+WHERE Invoice.InvoiceDate LIKE "2009%"
+GROUP BY Customer.SupportRepId
 ```
 20.
 ```
-
+SELECT Employee.FirstName || " " || Employee.LastName AS "Agent Name", SUM(Invoice.Total) AS "Total value of all sales" FROM Employee
+JOIN Customer ON Employee.EmployeeId = Customer.SupportRepId
+JOIN Invoice on Invoice.CustomerId = Customer.CustomerId
+WHERE Invoice.InvoiceDate LIKE "2010%"
+GROUP BY Customer.SupportRepId
 ```
 21.
 ```
-
+SELECT Employee.FirstName || " " || Employee.LastName AS "Agent Name", SUM(Invoice.Total) AS "Total value of all sales" FROM Employee
+JOIN Customer ON Employee.EmployeeId = Customer.SupportRepId
+JOIN Invoice on Invoice.CustomerId = Customer.CustomerId
+GROUP BY Customer.SupportRepId
 ```
 22.
 ```
-
+SELECT Employee.FirstName || " " || Employee.LastName AS "Agent Name", COUNT(Customer.SupportRepId) AS "# of Customers" FROM Employee
+JOIN Customer ON Employee.EmployeeId = Customer.SupportRepId
+GROUP BY Customer.SupportRepId
 ```
 23.
 ```
-
+SELECT BillingCountry, SUM(Total) AS Total FROM Invoice
+GROUP BY BillingCountry
+ORDER BY Total
 ```
 24.
 ```
