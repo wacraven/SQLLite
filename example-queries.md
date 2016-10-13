@@ -167,21 +167,44 @@ GROUP BY Customer.SupportRepId
 ```
 SELECT BillingCountry, SUM(Total) AS Total FROM Invoice
 GROUP BY BillingCountry
-ORDER BY Total
+ORDER BY Total DESC
 ```
 24.
 ```
-
+SELECT Track.Name , COUNT(InvoiceLine.TrackId) AS CountSold FROM InvoiceLine
+JOIN Invoice ON InvoiceLine.InvoiceId = Invoice.InvoiceId
+JOIN Track ON InvoiceLine.TrackId = Track.TrackId
+WHERE Invoice.InvoiceDate LIKE "2013%"
+GROUP BY InvoiceLine.TrackId
+ORDER BY CountSold DESC
+LIMIT 1
 ```
 25.
 ```
-
+SELECT Track.Name , COUNT(InvoiceLine.TrackId) AS CountSold FROM InvoiceLine
+JOIN Invoice ON InvoiceLine.InvoiceId = Invoice.InvoiceId
+JOIN Track ON InvoiceLine.TrackId = Track.TrackId
+GROUP BY InvoiceLine.TrackId
+ORDER BY CountSold DESC
+LIMIT 5
 ```
 26.
 ```
-
+SELECT Artist.Name , COUNT(InvoiceLine.TrackId) AS CountSold FROM InvoiceLine
+JOIN Invoice ON InvoiceLine.InvoiceId = Invoice.InvoiceId
+JOIN Track ON InvoiceLine.TrackId = Track.TrackId
+JOIN Album ON Track.AlbumId = Album.AlbumId
+JOIN Artist ON Album.ArtistId = Artist.ArtistId
+GROUP BY Artist.ArtistId
+ORDER BY CountSold DESC
+LIMIT 3
 ```
 27.
 ```
-
+SELECT MediaType.Name , COUNT(InvoiceLine.TrackId) AS CountSold FROM InvoiceLine
+JOIN Invoice ON InvoiceLine.InvoiceId = Invoice.InvoiceId
+JOIN Track ON InvoiceLine.TrackId = Track.TrackId
+JOIN MediaType ON Track.MediaTypeId = MediaType.MediaTypeId
+GROUP BY MediaType.MediaTypeId
+ORDER BY CountSold DESC
 ```
